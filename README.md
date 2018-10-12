@@ -42,8 +42,16 @@ student2 = accts[3]
 certifier.subscribe('SC', 'Julian', 'Jimenez', 25, 'j@j.com', {from: student1, value: web3.toWei(3,'ether')})
 certifier.subscribe('SC', 'Julian', 'Jimenez', 25, 'j@j.com', {from: student1, value: web3.toWei(3.2,'ether')})
 
+certifier.addCourse('SC','Solidity course',3, 45, 80, ['abc','cde','efg'], [])
+course = certifier.getCourse('SC')
 certifier.addSession('ETH', 'Etherum Introduction', 1478431966)
+certifier.addSession('SOL', 'Solidity Introduction', 1400001966)
+certifier.addSession('MTM', 'Metamask Introduction', 1478430000)
+certifier.addSession('CONT', 'Contracts Introduction', 1478000000)
 certifier.getSession('ETH')
-
+certifier.addSessionToCourse('SC','ETH')
+certifier.addSessionToCourse('SC','SOL')
+certifier.addSessionToCourse('SC','MTM')
+certifier.getCourseSessionsCount('SC')
 
 ```

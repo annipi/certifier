@@ -12,6 +12,7 @@ contract Certifier {
         uint duration;
         uint threshold;
         bytes32[] codes;
+        bytes32[] sessions;
         mapping(address => Student) students;
     }
 
@@ -35,13 +36,14 @@ contract Certifier {
 
     }
 
-    function addCourse( bytes32 _code, string _name, uint _cost, uint _duration, uint _threshold, bytes32[] _codes) public restricted {
+    function addCourse( bytes32 _code, string _name, uint _cost, uint _duration, uint _threshold, bytes32[] _codes, bytes32[] _sessions_codes) public restricted {
         courses[_code] = Course({
             name: _name,
             cost: _cost,
             duration: _duration,
             threshold: _threshold,
-            codes: _codes
+            codes: _codes,
+            sessions: _sessions_codes
         });
     }
 
@@ -52,9 +54,9 @@ contract Certifier {
         });
     }
 
-    function getCourse(bytes32 _code) public restricted view returns (string, uint, uint, uint, bytes32[]){
+    function getCourse(bytes32 _code) public restricted view returns (string, uint, uint, uint, bytes32[], bytes32[]){
         Course storage course = courses[_code];
-        return (course.name, course.cost, course.duration, course.threshold, course.codes);
+        return (course.name, course.cost, course.duration, course.threshold, course.codes, course.sessions);
     }
 
     function getSession(bytes32 _session_code) public restricted view returns (string, uint32){
@@ -78,6 +80,16 @@ contract Certifier {
             email: _email,
             codes: new bytes32[](0)
         });
+    }
+
+    function addSessionToCourse( bytes32 _course_code, bytes32 _session_code) public restricted {
+        Course storage course = courses[_course_code];
+        course.sessions.push(_session_code);
+    }
+
+    function getCourseSessionsCount(bytes32 _course_code) public restricted view returns (uint){
+        Course storage course = courses[_course_code];
+        return course.sessions.length.toFixed();
     }
 
     constructor() public {
