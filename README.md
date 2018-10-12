@@ -16,7 +16,8 @@ test/TestCertifier -> se escriben los test TDD
 ```
 truffle console
 compile
-migrate -> migrate --reset (fuerza a migrar nuevamente los contratos)
+migrate || migrate --reset
+
 ----------------------------------------------------------------------------------------------------------------------------
 accts = web3.eth.accounts ====> lista las cuentas en ganache
 web3.eth.getTransaction('0x6b6ceab424098649165ed6ba06846b13d6034efef17066c124ccc2eb8704c885') ====> 'Resultado de Migrate'
@@ -40,4 +41,9 @@ student1 = accts[2]
 student2 = accts[3]
 certifier.subscribe('SC', 'Julian', 'Jimenez', 25, 'j@j.com', {from: student1, value: web3.toWei(3,'ether')})
 certifier.subscribe('SC', 'Julian', 'Jimenez', 25, 'j@j.com', {from: student1, value: web3.toWei(3.2,'ether')})
+
+certifier.addSession('ETH', 'Etherum Introduction', 1478431966)
+certifier.getSession('ETH')
+
+
 ```
