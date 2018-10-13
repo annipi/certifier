@@ -2,7 +2,7 @@
     <div class="home">
         <h1>Certifier</h1>
 
-        <form @submit.prevent="save">
+        <form @submit.prevent="save" v-if="isOwner">
             <div class="form-group">
                 <label for="courseCode">Código curso</label>
                 <input type="text" class="form-control" id="coursecode" placeholder="Código curso" v-model="form.courseCode">
@@ -37,6 +37,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Subir</button>
         </form>
+        <div class="alert alert-danger" role="alert" v-else>
+            No eres el dueño o No has iniciado sesión o No tienes Metamask
+        </div>
         {{form}}
     </div>
 </template>
@@ -44,7 +47,7 @@
 <script>
     // @ is an alias to /src
     import HelloWorld from '@/components/HelloWorld.vue'
-    import {mapActions} from 'vuex'
+    import {mapActions, mapState} from 'vuex'
     import * as constants from '@/store/constants'
 
     export default {
@@ -63,6 +66,11 @@
                     course: []
                 }
             }
+        },
+        computed: {
+            ...mapState({
+                isOwner: state => state.Course.isOwner //state.module.property -> Course
+            })
         },
         methods: {
             ...mapActions({
