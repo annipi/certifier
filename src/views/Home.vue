@@ -31,7 +31,7 @@
                 <!--v-if sessions si v_session its null its hides the button-->
                 <button class="btn btn-danger" @click="sessions--" v-if="sessions">Borrar sesion</button>
             </div>
-            <!--ixd empieza desde 0, por eso se crea code que vaya desde 1-->
+            <!--idx empieza desde 0, por eso se crea code que vaya desde 1-->
             <div class="form-group" v-for="(code, idx) in sessions" v-if="sessions">
                 <input type="text" class="form-control" :placeholder="`Sessions ${code}`" v-model="form.course[idx]">
             </div>
@@ -56,7 +56,7 @@
         // reactivo -> c = a + b reacciona a los cambios de la ecuación
         data() {
             return {
-                sessions: 0,
+                sessions: 1,
                 form:{
                     courseCode: null,
                     courseName: null,
