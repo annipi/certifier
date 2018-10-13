@@ -94,6 +94,11 @@ contract Certifier {
         return course.sessions.length.toFixed();
     }
 
+    //view -> solo para ver la blookchain y no modificarla
+    function isOwner() public view returns (bool) {
+        return msg.sender == owner;
+    }
+
     constructor() public {
         owner = msg.sender;
     }
