@@ -12,13 +12,13 @@ window.addEventListener('load', () => {
     if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
     }else{
-      console.warn('Not metamask detected')
+        console.warn('Not metamask detected')
     }
 })
 
 //Monta Vue en un elemento con id = app -> App.vue
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

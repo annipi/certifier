@@ -31,6 +31,7 @@ contract Certifier {
     //now returns something like : 1478431966 (which you could convert in a readble form in http://www.unixtimestamp.com/)
     //https://ethereum.stackexchange.com/questions/9858/solidity-is-there-a-way-to-get-the-timestamp-of-a-transaction-that-executed
 
+    //TODO attendance how we are going to that shit?
     struct Attendance {
         mapping(address => Student) students;
 
@@ -87,6 +88,7 @@ contract Certifier {
         course.sessions.push(_session_code);
     }
 
+    //TODO end this shit
     function getCourseSessionsCount(bytes32 _course_code) public restricted view returns (uint){
         Course storage course = courses[_course_code];
         return course.sessions.length.toFixed();
