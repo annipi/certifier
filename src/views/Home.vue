@@ -44,6 +44,8 @@
 <script>
     // @ is an alias to /src
     import HelloWorld from '@/components/HelloWorld.vue'
+    import {mapActions} from 'vuex'
+    import * as constants from '@/store/constants'
 
     export default {
         name: 'home',
@@ -63,9 +65,15 @@
             }
         },
         methods: {
+            ...mapActions({
+                init: constants.COURSE_INIT
+            }),
             save () {
                 console.log(':)')
             }
+        },
+        created () {
+            this.init()
         }
     }
 </script>

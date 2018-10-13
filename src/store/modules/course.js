@@ -15,7 +15,7 @@ const actions = {
     //[constans.COURSE_INIT] lo interpola a course/INIT
     [constants.COURSE_INIT]: ({commit}) => {
         const abi = CourseContract.abi
-        const contracAddress = '0x' //direccion donde el contrato fue desplegado en ganache-cli (manual)
+        const contracAddress = '0x85e58e9edca5d4085c58bf02536f82a4f1424018' //direccion donde el contrato fue desplegado en ganache-cli (manual)
         const contract = web3.eth.contract(abi).at(contracAddress) //contrato con contenido abi, en la direccion contract address
         commit(constants.COURSE_SET_CONTRACT, contract) //dicta cual mutación debe usar
         //Coinbase da la direccion del cliente(Nosotros) en Metamask
@@ -23,6 +23,8 @@ const actions = {
             if(error) console.error(error)
             commit(constants.COURSE_SET_COINBASE, coinbase) //manda la app al estado coinbase
             //Objeto transaccional coinbase que en este momento en result
+            //contractFunction(Transactional Object -> ({from: coinbase})) -> direccion del owner (quien desplego el contrato)
+            //callback -> (error, isOwner)
             contract.isOwner({from: coinbase}, (error, isOwner) => {
                 if(error) console.error(error)
                 commit(constants.COURSE_SET_IS_OWNER, isOwner)
