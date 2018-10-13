@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import Course from '.modules/course'
+import Course from './modules/course'
 
 export default new Vuex.Store({
   modules: {

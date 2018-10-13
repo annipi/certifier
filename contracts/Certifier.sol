@@ -89,10 +89,10 @@ contract Certifier {
     }
 
     //TODO end this shit
-    function getCourseSessionsCount(bytes32 _course_code) public restricted view returns (uint){
-        Course storage course = courses[_course_code];
-        return course.sessions.length.toFixed();
-    }
+//    function getCourseSessionsCount(bytes32 _course_code) public restricted view returns (uint){
+//        Course storage course = courses[_course_code];
+//        return course.sessions.length.toFixed();
+//    }
 
     //view -> solo para ver la blookchain y no modificarla
     function isOwner() public view returns (bool) {
