@@ -33,7 +33,7 @@
             </div>
             <!--ixd empieza desde 0, por eso se crea code que vaya desde 1-->
             <div class="form-group" v-for="(code, idx) in sessions" v-if="sessions">
-                <input type="text" class="form-control" :placeholder="`Sessions ${code}`" v-model="form.course">
+                <input type="text" class="form-control" :placeholder="`Sessions ${code}`" v-model="form.course[idx]">
             </div>
             <button type="submit" class="btn btn-primary">Subir</button>
         </form>
@@ -74,10 +74,11 @@
         },
         methods: {
             ...mapActions({
-                init: constants.COURSE_INIT
+                init: constants.COURSE_INIT,
+                addCourse: constants.COURSE_ADD_COURSE
             }),
             save () {
-                console.log(':)')
+                this.addCourse(this.form) //console.log(JSON.stringify(this.form))
             }
         },
         created () {
